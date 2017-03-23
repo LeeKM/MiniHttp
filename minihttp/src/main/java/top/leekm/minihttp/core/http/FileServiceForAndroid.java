@@ -14,10 +14,13 @@ import top.leekm.minihttp.core.service.FileService;
 /**
  * Created by lkm on 2017/3/23.
  */
-
 public class FileServiceForAndroid implements FileService {
 
-    private final static String ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
+    private static String ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+    public void setRoot(String root) {
+        this.ROOT = root;
+    }
 
     private File getFile(String path) {
         return new File(ROOT + path);
