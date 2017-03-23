@@ -2,6 +2,7 @@ package top.leekm.minihttpserver;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -31,20 +32,14 @@ public class MainActivity extends Activity
         console = (Console) findViewById(R.id.console);
         console.println("localAddress: " + getLocalAddress());
         Log.registLogger(this);
+    }
 
+    public void startServer(View view) {
+        startService(new Intent(this, Server.class));
+    }
 
-        server.registLocalService(FileService.class,
-                new FileServiceForAndroid().setRoot(Environment
-                        .getExternalStorageDirectory().getAbsolutePath()
-                        + "/MiniServer"));
-        server.registHttpHandler("/action", ActionHandler.class);
-        server.registHttpHandler("/echo", EchoHttpHandler.class);
-
-        try {
-            server.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void stopServer(View view) {
+        stopService(new Intent(this, Server.class));
     }
 
     private String getLocalAddress() {

@@ -103,6 +103,7 @@ public class MiniHttpServer {
             Log.exception("core", e);
         }
         executor.shutdown();
+        dynamicManager.clear();
 
         status = Status.Stop;
         Log.log("server", "final stop");

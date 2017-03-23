@@ -51,3 +51,6 @@ server.registHttpHandler("/time", TimeService.class);
 ### Performance
 
 OK
+
+### Demo
+unzip MiniServer.zip and `adb push ./MiniServer /sdcard/`, visit http://a.b.c.d:port/index.html, default port is 8088.

@@ -4,6 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startServer"
+        android:text="StartServer" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stopServer"
+        android:text="StopServer" />
+
     <top.leekm.minihttpserver.Console
         android:id="@+id/console"
         android:layout_width="match_parent"
