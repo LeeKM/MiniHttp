@@ -18,8 +18,9 @@ public class FileServiceForAndroid implements FileService {
 
     private static String ROOT = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-    public void setRoot(String root) {
+    public FileServiceForAndroid setRoot(String root) {
         this.ROOT = root;
+        return this;
     }
 
     private File getFile(String path) {

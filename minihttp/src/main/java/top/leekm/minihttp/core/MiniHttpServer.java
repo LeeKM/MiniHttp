@@ -6,15 +6,12 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import top.leekm.minihttp.core.http.FileServiceForAndroid;
 import top.leekm.minihttp.core.http.HttpHandler;
-import top.leekm.minihttp.core.service.FileService;
 import top.leekm.minihttp.utils.Helper;
 
 /**
  * Created by lkm on 2017/3/20.
  */
-
 public class MiniHttpServer {
 
     private ServerSocket serverSocket;
@@ -27,7 +24,6 @@ public class MiniHttpServer {
 
     public MiniHttpServer() {
         dynamicManager = new DynamicManager(this);
-        dynamicManager.registLocalService(FileService.class, new FileServiceForAndroid());
     }
 
     public void start() throws IOException {
@@ -44,6 +40,10 @@ public class MiniHttpServer {
 
     public void registHttpHandler(String path, Class<? extends HttpHandler> clazz) {
         dynamicManager.registHttpHandler(path, clazz);
+    }
+
+    public void registLocalService(Class<?> clazz, Object service) {
+        dynamicManager.registLocalService(clazz, service);
     }
 
     public HttpHandler getDefaultHttpHandler() {

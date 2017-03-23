@@ -5,12 +5,15 @@ import android.app.Activity;
 import android.net.DhcpInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 
 import java.io.IOException;
 
 import top.leekm.minihttp.core.Log;
 import top.leekm.minihttp.core.MiniHttpServer;
+import top.leekm.minihttp.core.http.FileServiceForAndroid;
+import top.leekm.minihttp.core.service.FileService;
 import top.leekm.minihttp.utils.Helper;
 import top.leekm.minihttpserver.demo.R;
 
@@ -29,6 +32,11 @@ public class MainActivity extends Activity
         console.println("localAddress: " + getLocalAddress());
         Log.registLogger(this);
 
+
+        server.registLocalService(FileService.class,
+                new FileServiceForAndroid().setRoot(Environment
+                        .getExternalStorageDirectory().getAbsolutePath()
+                        + "/MiniServer"));
         server.registHttpHandler("/action", ActionHandler.class);
         server.registHttpHandler("/echo", EchoHttpHandler.class);
 
